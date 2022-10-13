@@ -1,0 +1,15 @@
+####
+GET http://localhost:8080/hello?x=5&y=80&z=7
+
+####
+POST http://localhost:8080/hello
+Content-Type: application/x-www-form-urlencoded
+Custom-Header: izzat
+
+username=Jim&password=123
+
+####
+GET http://localhost:8080/count
+
+####
+GET http://localhost:8080/getCount
