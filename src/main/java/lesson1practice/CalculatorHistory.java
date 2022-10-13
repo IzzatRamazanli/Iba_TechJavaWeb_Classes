@@ -8,7 +8,7 @@ import java.util.List;
 public class CalculatorHistory {
     private final List<String> history;
 
-    public void save(String  result) {
+    public void save(String result) {
         history.add(result);
     }
 
@@ -20,4 +20,6 @@ public class CalculatorHistory {
     public String toString() {
         return "CalculatorHistory{history=%s}".formatted(history);
     }
+
+
 }

@@ -28,27 +28,27 @@ public class CalculatorServlet extends HttpServlet {
             switch (op) {
                 case "plus" -> {
                     double plus = this.op.add(xr, yr);
-                    String result = "";
-                    history.save(result);
-                    writer.println(result);
+                    String result = xr + " + " + yr;
+                    history.save(result + " = " + plus);
+                    writer.println(result + " = " + plus);
                 }
                 case "minus" -> {
                     double minus = this.op.subtract(xr, yr);
-                    String result = "";
-                    history.save(result);
-                    writer.println(result);
+                    String result = xr + " - " + yr;
+                    history.save(result + " = " + minus);
+                    writer.println(result + " = " + minus);
                 }
                 case "mult" -> {
                     double mult = this.op.multiply(xr, yr);
-                    String result = xr + "*" + yr;
+                    String result = xr + " * " + yr;
                     history.save(result + "=" + mult);
-                    writer.println(result);
+                    writer.println(result + " = " + mult);
                 }
                 case "div" -> {
                     double div = this.op.divide(xr, yr);
-                    String result = "";
-                    history.save(result);
-                    writer.println(result);
+                    String result = xr + " / " + yr;
+                    history.save(result + " = " + div);
+                    writer.println(result + " = " + div);
                 }
                 default -> writer.println("Wrong operation");
             }
