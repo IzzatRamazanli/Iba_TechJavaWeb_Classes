@@ -14,7 +14,7 @@ public class ServerApp {
 
 
         ServletContextHandler handler = new ServletContextHandler();
-        handler.addServlet(HelloServlet.class, "/hello");//"?x=7&y=5"
+        handler.addServlet(HelloServlet.class, "/hello"); //"?x=7&y=5"
         handler.addServlet(ByeServlet.class, "/bye");
         handler.addServlet(CustomerServlet.class, "/customers");
 
