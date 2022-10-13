@@ -6,9 +6,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class CalculatorHistory {
-    private final List<Double> history;
+    private final List<String> history;
 
-    public void save(double result) {
+    public void save(String  result) {
         history.add(result);
     }
 

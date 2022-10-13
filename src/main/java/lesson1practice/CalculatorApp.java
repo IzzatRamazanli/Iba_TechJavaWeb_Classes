@@ -12,7 +12,7 @@ public class CalculatorApp {
         Server server = new Server(8080);
         ServletContextHandler handler = new ServletContextHandler();
 
-        List<Double> list = new ArrayList<>();
+        List<String > list = new ArrayList<>();
         CalculatorOperations op = new CalculatorOperations();
         CalculatorHistory history = new CalculatorHistory(list);
 

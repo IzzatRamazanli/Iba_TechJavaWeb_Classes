@@ -27,15 +27,30 @@ public class CalculatorServlet extends HttpServlet {
         try (PrintWriter writer = resp.getWriter()) {
             switch (op) {
                 case "plus" -> {
-                    double result = this.op.add(xr, yr);
+                    double plus = this.op.add(xr, yr);
+                    String result = "";
                     history.save(result);
                     writer.println(result);
                 }
                 case "minus" -> {
-                    double result = this.op.subtract(xr, yr);
+                    double minus = this.op.subtract(xr, yr);
+                    String result = "";
                     history.save(result);
                     writer.println(result);
                 }
+                case "mult" -> {
+                    double mult = this.op.multiply(xr, yr);
+                    String result = xr + "*" + yr;
+                    history.save(result + "=" + mult);
+                    writer.println(result);
+                }
+                case "div" -> {
+                    double div = this.op.divide(xr, yr);
+                    String result = "";
+                    history.save(result);
+                    writer.println(result);
+                }
+                default -> writer.println("Wrong operation");
             }
         }
     }
