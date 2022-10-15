@@ -10,6 +10,7 @@ public class ServerApp {
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(new ServletHolder(ShowTextFileServlet.class), "/showtextfile");
+        handler.addServlet(new ServletHolder(ShowDynamicTextFileServlet.class), "/dynamic");
         handler.addServlet(new ServletHolder(StaticFileServlet.class), "/*");
 //        handler.addServlet(RagnarFileServlet.class, "/ragnar.jpg");
 //        handler.addServlet(LandScapeServlet.class, "/landscape.jpg");

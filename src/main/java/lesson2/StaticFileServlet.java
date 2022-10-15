@@ -18,7 +18,7 @@ public class StaticFileServlet extends HttpServlet {
 
         if (requestedName.startsWith("/")) requestedName = requestedName.substring(1);
 
-        URI fileName = null;
+        URI fileName;
         try {
             fileName = URIHandler.getUri(requestedName, this);
         } catch (URISyntaxException e) {

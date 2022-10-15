@@ -7,12 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 public class RagnarFileServlet extends HttpServlet {
     /*http://localhost:8080/ragnar.jpg*/
@@ -21,7 +19,7 @@ public class RagnarFileServlet extends HttpServlet {
 
         URI uri;
         try {
-            uri = URIHandler.getUri("ragnar.jpg", this);
+            uri = URIHandler.getUri("images/ragnar.jpg", this);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

@@ -19,7 +19,7 @@ public class LandScapeServlet extends HttpServlet {
 
         URI uri;
         try {
-            uri = URIHandler.getUri("landscape.jpg", this);
+            uri = URIHandler.getUri("images/landscape.jpg", this);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
