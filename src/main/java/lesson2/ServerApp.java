@@ -13,6 +13,7 @@ public class ServerApp {
         handler.addServlet(new ServletHolder(ShowDynamicTextFileServlet1.class), "/dynamic1");
         handler.addServlet(new ServletHolder(ShowDynamicTextFileServlet2.class), "/dynamic2");
         handler.addServlet(new ServletHolder(FormServlet.class), "/form");
+        handler.addServlet(new ServletHolder(FormCheckBoxServlet.class), "/formcheckbox");
         handler.addServlet(new ServletHolder(StaticFileServlet.class), "/*");
 //        handler.addServlet(RagnarFileServlet.class, "/ragnar.jpg");
 //        handler.addServlet(LandScapeServlet.class, "/landscape.jpg");

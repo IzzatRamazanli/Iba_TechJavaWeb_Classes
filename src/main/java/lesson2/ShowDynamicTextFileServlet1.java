@@ -24,9 +24,6 @@ public class ShowDynamicTextFileServlet1 extends HttpServlet {
         HashMap<String, Object> data = new HashMap<>();
         data.put("name", "Izzat");
         data.put("age", 20);
-//        data.put("iphone 14", "3000");
-//        data.put("macbook", "5000");
-//        data.put("macbook 16", "6000");
 
         try (PrintWriter writer = resp.getWriter()) {
             conf.getTemplate("test2.ftl").process(data, writer);
