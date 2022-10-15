@@ -10,6 +10,7 @@ public class ServerApp {
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(ShowTextFileServlet.class, "/showtextfile");
         handler.addServlet(RagnarFileServlet.class, "/ragnar.jpg");
+        handler.addServlet(LandScapeServlet.class, "/landscape.jpg");
 
         server.setHandler(handler);
         server.start();
