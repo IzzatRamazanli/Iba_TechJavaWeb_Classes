@@ -8,23 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<table border="1">
-    <tr>
-        <td>iphone 14</td>
-        <td>3000</td>
-    </tr>
-    <tr>
-        <td>macbook</td>
-        <td>5000</td>
-    </tr>
-    <tr>
-        <td>macbook 16</td>
-        <td>6000</td>
-    </tr>
-</table>
-<img src="images/ragnar.jpg"><br>
-<img src="images/landscape.jpg">
-
-
+<p>My name is ${name}</p>
+<p>I'm ${age} years old</p>
 </body>
 </html>

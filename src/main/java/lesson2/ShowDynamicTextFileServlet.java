@@ -1,16 +1,16 @@
 package lesson2;
 
+import freemarker.template.Configuration;
+import freemarker.template.TemplateException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.List;
 
 public class ShowDynamicTextFileServlet extends HttpServlet {
     /*http://localhost:8080/dynamic*/
@@ -18,23 +18,21 @@ public class ShowDynamicTextFileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        HashMap<String, String> data = new HashMap<>();
-        data.put("iphone 14", "3000");
-        data.put("macbook", "5000");
-        data.put("macbook 16", "6000");
+        Configuration conf = new Configuration(Configuration.VERSION_2_3_31);
+        conf.setDefaultEncoding(String.valueOf(StandardCharsets.UTF_8));
+        conf.setDirectoryForTemplateLoading(new File("src/main/java/lesson2"));
 
-        URI uri;
-        try {
-            uri = URIHandler.getUri("test2.html", this);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("name","Izzat");
+        data.put("age",20);
+//        data.put("iphone 14", "3000");
+//        data.put("macbook", "5000");
+//        data.put("macbook 16", "6000");
 
-        List<String> lines = Files.readAllLines(Path.of(uri));
         try (PrintWriter writer = resp.getWriter()) {
-            for (String line : lines) {
-                writer.println(line);
-            }
+            conf.getTemplate("test2.ftl").process(data, writer);
+        } catch (TemplateException e) {
+            throw new RuntimeException(e);
         }
     }
 
