@@ -10,20 +10,25 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class LandScapeServlet extends HttpServlet {
-    /*http://localhost:8080/landscape.jpg*/
+public class StaticFileServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String requestedName = req.getPathInfo();
 
-        URI uri;
+        if (requestedName.startsWith("/")) requestedName = requestedName.substring(1);
+
+        URI fileName = null;
         try {
-            uri = URIHandler.getUri("landscape.jpg", this);
+            fileName = URIHandler.getUri(requestedName, this);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(requestedName);
+        System.out.println(fileName);
 
         try (ServletOutputStream outputStream = resp.getOutputStream()) {
-            Files.copy(Path.of(uri), outputStream);
+            Files.copy(Path.of(fileName), outputStream);
         }
 
 

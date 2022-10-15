@@ -1,25 +1,25 @@
-package lesson2;
+package lesson2.explicit;
+
+import lesson2.URIHandler;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
-public class RagnarFileServlet extends HttpServlet {
-    /*http://localhost:8080/ragnar.jpg*/
+public class LandScapeServlet extends HttpServlet {
+    /*http://localhost:8080/landscape.jpg*/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         URI uri;
         try {
-            uri = URIHandler.getUri("ragnar.jpg", this);
+            uri = URIHandler.getUri("landscape.jpg", this);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
