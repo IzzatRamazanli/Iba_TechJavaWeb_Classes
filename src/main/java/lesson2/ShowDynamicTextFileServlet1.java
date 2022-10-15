@@ -11,8 +11,8 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-public class ShowDynamicTextFileServlet extends HttpServlet {
-    /*http://localhost:8080/dynamic*/
+public class ShowDynamicTextFileServlet1 extends HttpServlet {
+    /*http://localhost:8080/dynamic1*/
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
