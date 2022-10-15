@@ -14,8 +14,8 @@
         <td>3000</td>
     </tr>
 </table>
-<img src="images/ragnar.jpg"><br>
-<img src="images/landscape.jpg">
+<img src="../images/ragnar.jpg"><br>
+<img src="../images/landscape.jpg">
 
 
 </body>

@@ -8,18 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-<table border="1">
-    <tbody>
-    <#list data as item>
-        <tr>
-            <td>${item.name}</td>       <!-- this is getter not field itself -->
-            <td>${item.age}</td>
-            <td>${item.group}</td>
-        </tr>
-    </#list>
-
-    </tbody>
-</table>
-
+<form method="post">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
