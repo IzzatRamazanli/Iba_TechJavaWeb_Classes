@@ -10,7 +10,5 @@ GET http://localhost:8080/calc?x=17&y=3&operation=mult
 ####
 GET http://localhost:8080/calc?x=15&y=5&operation=div
 
-
-
 ####
 GET http://localhost:8080/calc/his

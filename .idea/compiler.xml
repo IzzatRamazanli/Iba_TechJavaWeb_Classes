@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Iba_TechJavaWeb_Classes" />
         <module name="javaweb" />
       </profile>
     </annotationProcessing>

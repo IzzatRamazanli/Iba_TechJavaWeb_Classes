@@ -3,6 +3,7 @@ package lesson1practice;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RequiredArgsConstructor
 public class CalculatorHistory {
@@ -18,7 +19,14 @@ public class CalculatorHistory {
 
     @Override
     public String toString() {
-        return "CalculatorHistory{history=%s}".formatted(history);
+        return getString();
+    }
+
+    public String getString() {
+        StringBuilder[] sb = {new StringBuilder()};
+        AtomicInteger counter = new AtomicInteger(1);
+        history.forEach(x -> sb[0].append(counter.getAndIncrement()).append(". ").append(x).append("\n"));
+        return sb[0].toString();
     }
 
 
