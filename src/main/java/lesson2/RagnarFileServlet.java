@@ -17,7 +17,6 @@ public class RagnarFileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        //must create resources directory under main folder
         URI uri;
         try {
             uri = URIHandler.getUri("ragnar.jpg", this);
