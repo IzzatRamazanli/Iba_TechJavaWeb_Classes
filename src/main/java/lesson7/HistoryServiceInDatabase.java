@@ -5,11 +5,8 @@ import lombok.SneakyThrows;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HistoryServiceInDatabase implements History {
     private final Connection connection;
@@ -33,7 +30,6 @@ public class HistoryServiceInDatabase implements History {
 
 
     }
-
     @Override
     @SneakyThrows
     public List<HistoryItem> getAll(String user) {
