@@ -11,6 +11,10 @@ public class CookieFilter implements Filter {
         return request instanceof HttpServletRequest && response instanceof HttpServletResponse;
     }
 
+    private boolean checkCookie(HttpServletRequest request) {
+        return SessionRelated.find(request).isPresent();
+    }
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -24,6 +28,13 @@ public class CookieFilter implements Filter {
         if (isHttp(request, response)) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
             HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+
+            //main logic part
+            if (checkCookie(httpServletRequest)) chain.doFilter(request, response);
+            else {
+                httpServletResponse.sendRedirect("/login");
+            }
+
         } else {
             //if not HTTP, just forward
             chain.doFilter(request, response);

@@ -19,4 +19,9 @@ public class HistoryServiceInMemory implements History {
     public List<HistoryItem> getAll(String user) {
         return data.getOrDefault(user, new ArrayList<>());
     }
+
+    @Override
+    public void delete(String user) {
+        data.remove(user);
+    }
 }

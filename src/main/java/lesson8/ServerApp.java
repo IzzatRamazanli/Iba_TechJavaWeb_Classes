@@ -17,11 +17,13 @@ public class ServerApp {
         CalcServlet calcServlet = new CalcServlet(historyService);
         HistoryServlet history = new HistoryServlet(historyService);
         LogoutServlet logoutServlet = new LogoutServlet(historyService);
+        LoginServlet loginServlet = new LoginServlet();
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(new ServletHolder(calcServlet), "/calc");
         handler.addServlet(new ServletHolder(history), "/history");
         handler.addServlet(new ServletHolder(logoutServlet), "/logout");
+        handler.addServlet(new ServletHolder(loginServlet), "/login");
 
         server.setHandler(handler);
         server.start();
