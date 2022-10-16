@@ -21,6 +21,10 @@ public class SessionRelated {
         return Optional.empty();
     }
 
+    public static Cookie findOrDie(HttpServletRequest request) {
+        return find(request).orElseThrow(() -> new RuntimeException("will never happen due to design"));
+    }
+
     public static Cookie newRandom() {
         return new Cookie(COOKIE_NAME, UUID.randomUUID().toString());
     }
