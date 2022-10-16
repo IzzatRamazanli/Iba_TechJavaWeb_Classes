@@ -19,9 +19,7 @@ public class CalcServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String user = SessionRelated.find(req)
-                .map(Cookie::getValue)
-                .orElseThrow(() -> new RuntimeException("will never happen due to design"));
+        String user = SessionRelated.findOrDie(req).getValue();
 
         try (PrintWriter writer = resp.getWriter()) {
 

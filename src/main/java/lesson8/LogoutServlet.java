@@ -20,8 +20,7 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        Cookie cookie = SessionRelated.find(req)
-                .orElseThrow(() -> new RuntimeException("will never happen due to design"));
+        Cookie cookie = SessionRelated.findOrDie(req);
 
         cookie.setMaxAge(0);
         resp.addCookie(cookie);

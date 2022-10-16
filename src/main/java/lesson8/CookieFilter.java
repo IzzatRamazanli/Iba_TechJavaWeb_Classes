@@ -5,44 +5,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CookieFilter implements Filter {
+public class CookieFilter implements HttpFilter {
 
-    private boolean isHttp(ServletRequest request, ServletResponse response) {
-        return request instanceof HttpServletRequest && response instanceof HttpServletResponse;
-    }
 
-    private boolean checkCookie(HttpServletRequest request) {
+    private boolean isCookiePresent(HttpServletRequest request) {
         return SessionRelated.find(request).isPresent();
     }
-
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    @Override
-    public void doFilter(ServletRequest request,
-                         ServletResponse response,
-                         FilterChain chain) throws IOException, ServletException {
-        //checking for HTTP
-        if (isHttp(request, response)) {
-            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-
-            //main logic part
-            if (checkCookie(httpServletRequest)) chain.doFilter(request, response);
-            else {
-                httpServletResponse.sendRedirect("/login");
-            }
-
-        } else {
-            //if not HTTP, just forward
-            chain.doFilter(request, response);
+    public void doHttpFilter(HttpServletRequest request,
+                             HttpServletResponse response,
+                             FilterChain chain) throws IOException, ServletException {
+        if (isCookiePresent(request)) chain.doFilter(request, response);
+        else {
+            response.sendRedirect("/login");
         }
-    }
-
-    @Override
-    public void destroy() {
-
     }
 }
