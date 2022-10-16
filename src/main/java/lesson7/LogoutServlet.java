@@ -12,6 +12,12 @@ import java.util.UUID;
 public class LogoutServlet extends HttpServlet {
     /*http://localhost:8080/logout*/
 
+    private final History history;
+
+    public LogoutServlet(History history) {
+        this.history = history;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
@@ -19,6 +25,7 @@ public class LogoutServlet extends HttpServlet {
         found.ifPresent(cookie -> {
             cookie.setMaxAge(0);
             resp.addCookie(cookie);
+            history.delete(cookie.getValue());
         });
 
         try (PrintWriter writer = resp.getWriter()) {

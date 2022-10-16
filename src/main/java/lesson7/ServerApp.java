@@ -16,7 +16,7 @@ public class ServerApp {
 
         CalcServlet calcServlet = new CalcServlet(historyService);
         HistoryServlet history = new HistoryServlet(historyService);
-        LogoutServlet logoutServlet = new LogoutServlet();
+        LogoutServlet logoutServlet = new LogoutServlet(historyService);
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(new ServletHolder(calcServlet), "/calc");

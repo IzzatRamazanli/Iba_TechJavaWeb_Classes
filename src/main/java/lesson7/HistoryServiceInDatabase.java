@@ -18,7 +18,7 @@ public class HistoryServiceInDatabase implements History {
     @SneakyThrows
     @Override
     public void save(String user, HistoryItem item) {
-        String query = "insert into history (u, x, y, z, t) values (?, ?,?,?,?)";
+        String query = "insert into history (u, x, y, z, t) values (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user);
             statement.setInt(2, item.x);
