@@ -27,9 +27,8 @@ public class HistoryServiceInDatabase implements History {
             statement.setString(5, item.ldt.toString());
             statement.executeUpdate();
         }
-
-
     }
+
     @Override
     @SneakyThrows
     public List<HistoryItem> getAll(String user) {
@@ -44,9 +43,7 @@ public class HistoryServiceInDatabase implements History {
                         resultSet.getInt("y"),
                         resultSet.getInt("z")));
             }
-
         }
-
         return data;
     }
 
