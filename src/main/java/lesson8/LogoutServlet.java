@@ -21,20 +21,17 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         Optional<Cookie> found = SessionRelated.find(req);
-        found.ifPresent(cookie -> {
-            cookie.setMaxAge(0);
-            resp.addCookie(cookie);
-            history.delete(cookie.getValue());
-        });
+
+        Cookie cookie = SessionRelated.find(req)
+                .orElseThrow(() -> new RuntimeException("will never happen due to design"));
+        cookie.setMaxAge(0);
+        resp.addCookie(cookie);
+        history.delete(cookie.getValue());
+
 
         try (PrintWriter writer = resp.getWriter()) {
-            String message = found
-                    .map(Cookie::getValue)
-                    .map(x -> String.format("user %s successfully logged out", x))
-                    .orElse("there was no logged user");
+            String message = String.format("user %s successfully logged out", cookie.getValue());
             writer.println(message);
         }
-
-
     }
 }
