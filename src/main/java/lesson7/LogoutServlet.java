@@ -14,18 +14,12 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Cookie[] cookies = req.getCookies();
-        Optional<String> found = Optional.empty();
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(SessionRelated.COOKIE_NAME)) {
-                    found = Optional.of(cookie.getValue());
-                    cookie.setMaxAge(0);
-                    resp.addCookie(cookie);
-                }
-            }
-        }
+        Optional<Cookie> found = SessionRelated.find(req);
+        found.ifPresent(cookie -> {
+            cookie.setMaxAge(0);
+            resp.addCookie(cookie);
+        });
 
         try (PrintWriter writer = resp.getWriter()) {
             String message = found.map(x -> String.format("user %s successfully logged out", x))

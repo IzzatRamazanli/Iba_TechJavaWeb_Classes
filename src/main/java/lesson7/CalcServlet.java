@@ -14,20 +14,9 @@ public class CalcServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Cookie[] cookies = req.getCookies();
-        Optional<String> found = Optional.empty();
+        Optional<String> found = SessionRelated.find(req).map(Cookie::getValue);
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(SessionRelated.COOKIE_NAME)) {
-                    found = Optional.of(cookie.getValue());
-                }
-            }
-        }
-
-        if (found.isEmpty()) {
-            resp.addCookie(new Cookie(SessionRelated.COOKIE_NAME, UUID.randomUUID().toString()));
-        }
+        if (found.isEmpty()) resp.addCookie(SessionRelated.newRandom());
 
         try (PrintWriter writer = resp.getWriter()) {
 
