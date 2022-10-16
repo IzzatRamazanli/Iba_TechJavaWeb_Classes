@@ -53,4 +53,14 @@ public class HistoryServiceInDatabase implements History {
 
         return data;
     }
+
+    @Override
+    @SneakyThrows
+    public void delete(String user) {
+        String query = "delete from history where u=?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, user);
+            statement.execute();
+        }
+    }
 }
