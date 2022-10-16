@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryService implements History {
+public class HistoryServiceInMemory implements History {
     private final Map<String, List<HistoryItem>> data = new HashMap<>();
 
     @Override

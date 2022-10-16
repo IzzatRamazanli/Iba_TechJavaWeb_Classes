@@ -1,13 +1,18 @@
 package lesson7;
 
+import lesson3.DbHelper;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import java.sql.Connection;
+
 public class ServerApp {
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);
-        HistoryService historyService = new HistoryService();
+        DbHelper helper = new DbHelper();
+        Connection connection = helper.connection();
+        History historyService = new HistoryServiceInDatabase(connection);
 
         CalcServlet calcServlet = new CalcServlet(historyService);
         HistoryServlet history = new HistoryServlet(historyService);

@@ -1,13 +1,14 @@
 package lesson7;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Optional;
-import java.util.UUID;
 
 public class CalcServlet extends HttpServlet {
     /*http://localhost:8080/calc?x=5&y=7*/
@@ -33,7 +34,13 @@ public class CalcServlet extends HttpServlet {
             int x = Integer.parseInt(xs);
             int y = Integer.parseInt(ys);
             int z = x + y;
-            found.ifPresent(user -> history.save(user, new HistoryItem(x, y, z)));
+            found.ifPresent(user -> {
+                try {
+                    history.save(user, new HistoryItem(x, y, z));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
             writer.printf("adding... %d + %d = %d", x, y, z);
         }
 
