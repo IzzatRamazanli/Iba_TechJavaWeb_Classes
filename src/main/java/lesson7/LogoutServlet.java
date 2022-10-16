@@ -22,7 +22,9 @@ public class LogoutServlet extends HttpServlet {
         });
 
         try (PrintWriter writer = resp.getWriter()) {
-            String message = found.map(x -> String.format("user %s successfully logged out", x))
+            String message = found
+                    .map(Cookie::getValue)
+                    .map(x -> String.format("user %s successfully logged out", x))
                     .orElse("there was no logged user");
             writer.println(message);
         }

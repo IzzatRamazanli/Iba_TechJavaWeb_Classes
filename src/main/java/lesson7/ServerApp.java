@@ -7,8 +7,10 @@ import org.eclipse.jetty.servlet.ServletHolder;
 public class ServerApp {
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);
-        CalcServlet calcServlet = new CalcServlet();
-        HistoryServlet history = new HistoryServlet();
+        HistoryService historyService = new HistoryService();
+
+        CalcServlet calcServlet = new CalcServlet(historyService);
+        HistoryServlet history = new HistoryServlet(historyService);
         LogoutServlet logoutServlet = new LogoutServlet();
 
         ServletContextHandler handler = new ServletContextHandler();
