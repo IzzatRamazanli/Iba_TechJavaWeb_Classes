@@ -20,16 +20,14 @@ public class HistoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Optional<Cookie> found = SessionRelated.find(req);
+
+        String user = SessionRelated.find(req)
+                .map(Cookie::getValue)
+                .orElseThrow(() -> new RuntimeException("will never happen due to design"));
+
         try (PrintWriter writer = resp.getWriter()) {
             writer.println("history:");
-
-            found
-                    .map(Cookie::getValue)
-                    .map(user -> history.getAll(user))
-                    .ifPresentOrElse(
-                            items -> items.forEach(writer::println),
-                            () -> writer.println("no logged user"));
+            history.getAll(user).forEach(writer::println);
         }
     }
 }
