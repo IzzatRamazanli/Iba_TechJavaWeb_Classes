@@ -9,10 +9,12 @@ public class ServerApp {
         Server server = new Server(8080);
         CalcServlet calcServlet = new CalcServlet();
         HistoryServlet history = new HistoryServlet();
+        LogoutServlet logoutServlet = new LogoutServlet();
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(new ServletHolder(calcServlet), "/calc");
         handler.addServlet(new ServletHolder(history), "/history");
+        handler.addServlet(new ServletHolder(logoutServlet), "/logout");
 
         server.setHandler(handler);
         server.start();
